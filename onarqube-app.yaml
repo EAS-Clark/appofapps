@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sonarqube-app
+  # Add other metadata fields as needed
+spec:
+  destination:
+    namespace: sonarqube-namespace  # Replace with your desired namespace for SonarQube
+    server: https://kubernetes.default.svc  # Replace with your Kubernetes API server address
+  project: your-argo-project  # Replace with the name of your Argo CD project (if you're using projects)
+  source:
+    repoURL: https://github.com/your-repo
+    path: argo-apps/sonarqube-app.yaml
+    targetRevision: main  # Replace with the desired branch, tag, or commit hash
+  syncPolicy:
+    automated: true
+    prune: true
